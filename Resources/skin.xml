@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<atlas texture="skin.png">
+    <frames>
+        <!-- placard elements -->
+        <frame name="window ur" x="60" y="0" w="36" h="32" />
+        <frame name="window um" x="39" y="0" w="18" h="32" />
+        <frame name="window ul" x="0" y="0" w="36" h="32" />
+        <frame name="window mr" x="60" y="36" w="36" h="18" />
+        <frame name="window mm" x="39" y="36" w="18" h="18" />
+        <frame name="window ml" x="0" y="36" w="36" h="18" />
+        <frame name="window lr" x="60" y="56" w="36" h="36" />
+        <frame name="window lm" x="39" y="56" w="18" h="36" />
+        <frame name="window ll" x="0" y="56" w="36" h="36" />
+        
+        <!-- button elements -->
+        <frame name="button unpressed" x="140" y="10" w="54" h="27" />
+        <frame name="button pressed" x="140" y="40" w="54" h="27" />
+        
+        <!-- checkbox elements -->
+        <frame name="checkbox off" x="110" y="10" w="18" h="18" />
+        <frame name="checkbox on" x="110" y="30" w="18" h="18" />
+    </frames>
+</atlas>

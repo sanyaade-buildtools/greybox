@@ -1,0 +1,84 @@
+* Greybox 2D Game Engine / About
+Greybox is a 2D game engine.
+
+* High-Level Overview
+Greybox is broken up into several main components:
+
+** Engine
+This is the heart of the system. It loads the Project, creates the Display,
+processes Input, tracks time with a Clock, manages all Scripts, and most
+importantly controls the run loop and Scene management.
+
+** Display
+The Display is simply manages the OpenGL window and viewport. It dispatches
+incoming events to the Engine's Input module for tracking, and handles
+clearing and presenting the viewport during the render phase of each frame.
+
+** Project
+The Project is the end-users application bundle. It tracks project settings
+(e.g. display size, title) as well as loaded assets.
+
+*** Manifests and Asset Groups
+Each Project will have one or more manifest files. These are XML files that
+contain a list of asset groups:
+
+: <manifest>
+:   <group name="main game" file="main_game_assets.xml" />
+: </manifest>
+
+Each asset group can be loaded and unloaded with a single command from a
+script. For example:
+
+: project.unload_assets('main menu')
+: project.load_assets('level 1')
+
+Multiple asset groups can be loaded at one time. They are always loaded
+asychronously, and you can check to see when they are finished loading and
+the what percent complete they are at.
+
+*** Assets
+Each asset group is a simple XML file made up of individual assets. Each
+asset is merely a name, type, and filename used to reference the asset in a
+script or another asset. For example:
+
+: <group>
+:   <asset name="spaceship" type="texture" file="spaceship.png" />
+: </group>
+
+All assets loaded at one time must have a unique name!
+
+** Input
+Input is where events dispatched from the Display are received and tracked.
+At any time it knows what keys are down, buttons pressed, the mouse position,
+how far the mouse moved, and more.
+
+** Clock
+The game Clock tracks the current frame counter, how much time elapsed between
+frames, the current time since the launch of the application, framerate, and
+a few other things.
+
+** Scene
+In the main game loop there is always a current Scene. A scene makes up the
+gameplay simulation. Each scene has one or more Layers that each contain a
+list of Actors, which are resposible for advancing the game and rendering. In
+addition, each Scene has a World object, which is the physics simulation space
+for that Scene.
+
+*** World
+There is a single physics World for each Scene. Even if your project doesn't
+use physics it is there. The physics simulation is automatically updated and
+all collisions are handled for you. Each actor in the scene is automatically
+a rigid body in the world.
+
+*** Layers
+Layers are how Actors are managed in a Scene. Actors are spawned from Prefab
+assets in the Project. Each layer has a z-ordering, which determines the order
+in which they are advanced and rendered (ascending: 0, 1, 2, ...). The 
+z-ordering for a layer can also be used for collision filtering.
+
+*** Actors
+Every Actor in the Scene is a collection of behaviors and scripts. In your
+Project, the Prefab assets are used to spawn Actors at runtime.
+
+* Low-Level Details
+TODO:
